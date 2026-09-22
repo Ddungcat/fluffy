@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CENTRAL BRANCH - SALES REPORT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'anton': ['Anton', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brutal-red': '#cc0000',
+                        'brutal-black': '#0a0a0a',
+                        'paper': '#f5f5f3',
+                    },
+                    letterSpacing: {
+                        'tighter': '-0.05em',
+                        'tightest': '-0.08em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #d1d1d1;
+            color: #0a0a0a;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Grunge/Noise Texture Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.4;
+            mix-blend-mode: overlay;
+        }
+
+        /* Blurred Background Typography (Reference Image Style) */
+        .blur-title {
+            filter: blur(16px);
+            opacity: 0.9;
+            transform: scale(1.1);
+            mix-blend-mode: multiply;
+            user-select: none;
+        }
+
+        /* Doodle Animations */
+        .doodle-draw {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawDoodle 2.5s forwards ease-out;
+        }
+        
+        @keyframes drawDoodle {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Brutalist Borders */
+        .border-brutal {
+            border: 3px solid #0a0a0a;
+        }
+        
+        /* Magazine Image Filter */
+        .mag-img {
+            filter: grayscale(20%) contrast(120%);
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-brutal-red selection:text-white pb-20">
+
+    <!-- Noise Filter SVG -->
+    <svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg">
+        <filter id="noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noise)"/>
+    </svg>
+
+    <!-- Dark High-Contrast Background (Face/Texture hint) -->
+    <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden bg-black">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000&auto=format&fit=crop" 
+             alt="Background" class="min-w-full min-h-full object-cover opacity-30 grayscale contrast-150">
+    </div>
+
+    <!-- Main Content Paper (Magazine Page) -->
+    <main class="relative z-10 w-full max-w-[1000px] mx-auto bg-paper mt-10 mb-10 shadow-2xl border-brutal overflow-hidden">
+        
+        <header class="relative pt-12 pb-8 px-6 md:px-12 border-b-4 border-black">
+            <!-- Huge Blurred Red Text Background -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full text-center z-0 overflow-hidden pt-4">
+                <h1 class="font-anton text-[28vw] md:text-[220px] leading-[0.75] text-brutal-red blur-title tracking-tighter mix-blend-multiply opacity-80">
+                    CENTRAL
+                </h1>
+            </div>
+            
+            <!-- Foreground Header Elements -->
+            <div class="relative z-10">
+                <!-- Magazine Top Nav -->
+                <nav class="flex justify-between items-center w-full uppercase font-bold text-[10px] md:text-sm tracking-widest mb-16 border-t-2 border-b-2 border-black py-2">
+                    <span class="hover:text-brutal-red cursor-pointer">Menu</span>
+                    <span class="hover:text-brutal-red cursor-pointer">Delivery</span>
+                    <span class="relative group cursor-pointer text-black">
+                        REPORT
+                        <!-- Red Circle Doodle -->
+                        <svg class="absolute -top-3 -left-4 w-20 h-10 text-brutal-red doodle-draw" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="3">
+                            <ellipse cx="50" cy="25" rx="45" ry="15" transform="rotate(-3 50 25)" />
+                            <ellipse cx="50" cy="25" rx="42" ry="18" transform="rotate(2 50 25)" opacity="0.5" />
+                        </svg>
+                    </span>
+                    <span class="hover:text-brutal-red cursor-pointer">About Us</span>
+                </nav>
+
+                <!-- Title & Eye Image Collage -->
+                <div class="flex flex-col md:flex-row items-end justify-between gap-4 mt-20">
+                    <div class="w-full md:w-1/2 h-32 md:h-48 border-brutal overflow-hidden bg-black relative">
+                        <!-- Eye close-up image like the reference -->
+                        <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=800&auto=format&fit=crop" 
+                             class="w-full h-full mag-img object-center" alt="Eye Collage">
+                    </div>
+                    <div class="w-full md:w-1/2 text-right">
+                        <h2 class="font-anton text-[15vw] md:text-[120px] leading-none tracking-tightest uppercase text-black">
+                            SALES
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Intro Text -->
+        <div class="p-6 md:p-12 text-xl md:text-3xl font-black leading-tight uppercase border-b border-black">
+            The <span class="bg-brutal-red text-white px-2">Central Branch</span> is the top-performing store among the three branches, ranking <span class="underline decoration-4 underline-offset-4 decoration-brutal-red">1st in sales</span> and boasting the highest customer conversion rate.
+        </div>
+
+        <section class="p-6 md:p-12 relative border-b-4 border-black">
+            <!-- Scribble Arrow Doodle -->
+            <svg class="absolute top-4 right-12 w-24 h-24 text-brutal-red doodle-draw hidden md:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M10,90 Q50,10 90,50" />
+                <polyline points="70,50 90,50 80,30" />
+            </svg>
+
+            <h3 class="font-anton text-4xl md:text-5xl mb-8 uppercase flex items-end gap-3 tracking-wide">
+                <span class="text-brutal-red text-6xl leading-none">01</span> Core Performance
+                <span class="font-inter font-bold text-sm tracking-normal ml-auto hidden sm:block pb-1 text-gray-500">(2026-08-01 ~ 2026-09-24)</span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-0 border-brutal bg-black">
+                
+                <!-- Food Image Block -->
+                <div class="col-span-1 md:col-span-4 h-48 md:h-auto overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=800&auto=format&fit=crop" 
+                         alt="Sushi" class="w-full h-full mag-img">
+                    <!-- Red X Doodle -->
+                    <svg class="absolute top-2 left-2 w-12 h-12 text-brutal-red doodle-draw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </div>
+
+                <!-- Main Stats Data -->
+                <div class="col-span-1 md:col-span-8 bg-paper grid grid-cols-1 sm:grid-cols-2 text-black">
+                    <!-- Total Revenue -->
+                    <div class="p-6 border-b sm:border-r border-black flex flex-col justify-between">
+                        <div class="uppercase text-[10px] font-bold tracking-widest text-gray-500 mb-4">Total Revenue</div>
+                        <div class="font-anton text-5xl md:text-6xl text-brutal-red mb-2">
+                            223.8M<span class="text-xl md:text-2xl font-inter font-black text-black block -mt-1">KRW</span>
+                        </div>
+                        <p class="text-xs font-bold mt-4 pt-4 border-t-2 border-black">Accounts for 42.7% of total sales<br>across 3 branches (Rank 1)</p>
+                    </div>
+
+                    <!-- Conversion Rate -->
+                    <div class="p-6 border-b border-black flex flex-col justify-between relative bg-black text-white">
+                        <div class="uppercase text-[10px] font-bold tracking-widest text-gray-400 mb-4">Conversion Rate</div>
+                        <div class="font-anton text-6xl md:text-7xl">
+                            46.4<span class="text-4xl">%</span>
+                        </div>
+                        <p class="text-xs font-bold mt-4 text-brutal-red">Rank 1 among all branches<br>(River 41.9%, Park 43.9%)</p>
+                    </div>
+
+                    <!-- Visitors & Transactions -->
+                    <div class="p-6 border-b sm:border-b-0 sm:border-r border-black">
+                        <div class="mb-6">
+                            <div class="uppercase text-[10px] font-bold tracking-widest text-gray-500">Total Visitors</div>
+                            <div class="font-anton text-3xl">14,691 <span class="font-inter font-bold text-sm">pax</span></div>
+                            <div class="text-[10px] font-bold text-gray-400 mt-1">Avg: ~267/day</div>
+                        </div>
+                        <div>
+                            <div class="uppercase text-[10px] font-bold tracking-widest text-gray-500">Total Transactions</div>
+                            <div class="font-anton text-3xl">6,823 <span class="font-inter font-bold text-sm">tx</span></div>
+                            <div class="text-[10px] font-bold text-gray-400 mt-1">Avg: ~124/day</div>
+                        </div>
+                    </div>
+
+                    <!-- Unit Price -->
+                    <div class="p-6 bg-paper relative">
+                        <div class="uppercase text-[10px] font-bold tracking-widest text-gray-500 mb-4">Unit Price Analysis</div>
+                        <div class="mb-4 pb-4 border-b border-gray-300">
+                            <div class="text-[10px] font-bold mb-1">Per Visitor</div>
+                            <div class="font-anton text-2xl">15,237 <span class="font-inter font-black text-sm">KRW</span></div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold mb-1">Per Transaction</div>
+                            <div class="font-anton text-2xl text-brutal-red">32,807 <span class="font-inter font-black text-sm text-black">KRW</span></div>
+                        </div>
+                        <!-- Scribble Underline -->
+                        <svg class="absolute bottom-6 right-6 w-32 h-6 text-black doodle-draw opacity-50" viewBox="0 0 100 20" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M5,15 Q30,5 50,15 T95,10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="p-6 md:p-12 border-b-4 border-black bg-white">
+            <h3 class="font-anton text-4xl md:text-5xl mb-6 uppercase flex items-end gap-3 tracking-wide">
+                <span class="text-black text-6xl leading-none">02</span> Trend Analysis
+            </h3>
+            
+            <p class="text-sm md:text-base font-bold mb-8 uppercase tracking-wide border-l-4 border-brutal-red pl-4 py-1">
+                Benefited heavily from the early Sept convenience food promo, maintaining <br class="hidden md:block">above-average performance post-event.
+            </p>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Data list -->
+                <div class="w-full lg:w-3/5 flex flex-col gap-4">
+                    <!-- Baseline -->
+                    <div class="border-brutal p-4 flex justify-between items-center">
+                        <div>
+                            <span class="bg-black text-white text-[10px] px-2 py-1 uppercase font-bold tracking-widest">Baseline</span>
+                            <div class="font-black text-lg mt-1 uppercase">Aug (8/1-9/3)</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] font-bold text-gray-500 uppercase">Daily Avg</div>
+                            <div class="font-anton text-2xl">3.91M <span class="text-sm font-inter text-black">KRW</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Promo Peak (Highlighted) -->
+                    <div class="border-brutal bg-brutal-red text-white p-5 flex justify-between items-center transform scale-[1.02] -rotate-1 shadow-[8px_8px_0_0_#0a0a0a] relative z-10">
+                        <div>
+                            <span class="bg-white text-brutal-red text-[10px] px-2 py-1 uppercase font-black tracking-widest">Promo Peak</span>
+                            <div class="font-black text-xl mt-1 uppercase">Sep (9/4-9/10)</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] font-bold text-white/80 uppercase">Daily Avg</div>
+                            <div class="font-anton text-4xl">4.81M <span class="text-sm font-inter">KRW</span></div>
+                            <div class="absolute -top-4 -right-4 bg-yellow-400 text-black font-black text-xs px-2 py-1 border-2 border-black rotate-6 uppercase">
+                                +22.9% Surge!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post Promo -->
+                    <div class="border-brutal p-4 flex justify-between items-center">
+                        <div>
+                            <span class="bg-gray-300 text-black text-[10px] px-2 py-1 uppercase font-bold tracking-widest">Post-Promo</span>
+                            <div class="font-black text-lg mt-1 uppercase">Sep (9/11-9/24)</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] font-bold text-gray-500 uppercase">Daily Avg</div>
+                            <div class="font-anton text-2xl">4.03M <span class="text-sm font-inter text-black">KRW</span></div>
+                            <div class="text-[10px] text-brutal-red font-black uppercase mt-1">-16.2% from peak</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insight Block -->
+                <div class="w-full lg:w-2/5 border-brutal bg-black text-white p-6 relative overflow-hidden flex flex-col justify-center">
+                    <div class="font-anton text-4xl text-brutal-red mb-4 opacity-50 absolute -top-2 -left-2 tracking-tighter">INSIGHT</div>
+                    <div class="relative z-10">
+                        <h4 class="font-black text-xl uppercase mb-3 border-b-2 border-white/20 pb-2">Weekend-Driven</h4>
+                        <p class="text-sm font-bold leading-relaxed">
+                            Weekend daily average sales hit <span class="text-brutal-red text-lg bg-white px-1">4.84M KRW</span>, which is <span class="underline">+33.0% higher</span> than the weekday average of 3.64M KRW.
+                        </p>
+                        <p class="text-[10px] text-gray-400 mt-4 uppercase tracking-widest">
+                            * Saturday peaks at 5.25M KRW
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="p-6 md:p-12 border-b-4 border-black relative bg-paper">
+            <h3 class="font-anton text-4xl md:text-5xl mb-8 uppercase flex items-end gap-3 tracking-wide">
+                <span class="text-black text-6xl leading-none">03</span> Branch Comparison
+            </h3>
+
+            <!-- Spider/Scratch Doodle from Reference -->
+            <svg class="absolute top-8 right-12 w-16 h-16 text-black opacity-40 doodle-draw" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M50 20 L50 80 M20 50 L80 50 M30 30 L70 70 M30 70 L70 30" />
+                <circle cx="50" cy="50" r="10" fill="currentColor"/>
+            </svg>
+
+            <div class="overflow-x-auto border-brutal bg-white">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                    <thead>
+                        <tr class="bg-black text-white font-inter text-xs uppercase tracking-widest">
+                            <th class="p-4 border-r border-gray-800">Branch</th>
+                            <th class="p-4 border-r border-gray-800 text-right">Visitors</th>
+                            <th class="p-4 border-r border-gray-800 text-right">Tx</th>
+                            <th class="p-4 border-r border-gray-800 text-right">Revenue (KRW)</th>
+                            <th class="p-4 border-r border-gray-800 text-right">Conv. %</th>
+                            <th class="p-4 border-r border-gray-800 text-right">U.P (Vis)</th>
+                            <th class="p-4 text-right">U.P (Tx)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-bold text-sm">
+                        <!-- River -->
+                        <tr class="border-b border-gray-300">
+                            <td class="p-4 border-r border-gray-300 uppercase">River</td>
+                            <td class="p-4 border-r border-gray-300 text-right font-anton text-lg">9,932</td>
+                            <td class="p-4 border-r border-gray-300 text-right font-anton text-lg">4,163</td>
+                            <td class="p-4 border-r border-gray-300 text-right font-anton text-lg">136,119,960</td>
+                            <td class="p-4 border-r border-gray-300 text-right">41.92%</td>
+                            <td class="p-4 border-r border-gray-300 text-right">13,705</td>
+                            <td class="p-4 text-right">32,698</td>
+                        </tr>
+                        
+                        <!-- Central (Highlight) -->
+                        <tr class="bg-black text-white relative z-10 transform scale-[1.01] shadow-lg border-2 border-brutal-red">
+                            <td class="p-4 border-r border-gray-700 uppercase text-brutal-red font-black text-lg flex items-center gap-2">
+                                CENTRAL
+                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                            </td>
+                            <td class="p-4 border-r border-gray-700 text-right font-anton text-xl text-brutal-red">14,691</td>
+                            <td class="p-4 border-r border-gray-700 text-right font-anton text-xl text-brutal-red">6,823</td>
+                            <td class="p-4 border-r border-gray-700 text-right font-anton text-xl text-white">223,843,230</td>
+                            <td class="p-4 border-r border-gray-700 text-right font-black bg-brutal-red text-white">46.44%</td>
+                            <td class="p-4 border-r border-gray-700 text-right text-brutal-red">15,237</td>
+                            <td class="p-4 text-right text-brutal-red">32,807</td>
+                        </tr>
+
+                        <!-- Park -->
+                        <tr class="border-b-2 border-black">
+                            <td class="p-4 border-r border-gray-300 uppercase">Park</td>
+                            <td class="p-4 border-r border-gray-300 text-right font-anton text-lg">11,434</td>
+                            <td class="p-4 border-r border-gray-300 text-right font-anton text-lg">5,024</td>
+                            <td class="p-4 border-r border-gray-300 text-right font-anton text-lg">164,589,350</td>
+                            <td class="p-4 border-r border-gray-300 text-right">43.94%</td>
+                            <td class="p-4 border-r border-gray-300 text-right">14,395</td>
+                            <td class="p-4 text-right">32,761</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="bg-gray-200 font-black text-sm uppercase">
+                        <tr>
+                            <td class="p-4 border-r border-gray-400">Total / Avg</td>
+                            <td class="p-4 border-r border-gray-400 text-right font-anton text-lg">36,057</td>
+                            <td class="p-4 border-r border-gray-400 text-right font-anton text-lg">16,010</td>
+                            <td class="p-4 border-r border-gray-400 text-right font-anton text-lg">524,552,540</td>
+                            <td class="p-4 border-r border-gray-400 text-right">44.40%</td>
+                            <td class="p-4 border-r border-gray-400 text-right">14,548</td>
+                            <td class="p-4 text-right">32,764</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <footer class="p-6 md:p-12 relative bg-paper">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Text CTA -->
+                <div class="relative z-10 order-2 md:order-1">
+                    <div class="inline-block bg-black text-white font-anton text-xl px-3 py-1 mb-4 uppercase tracking-widest">Next Step</div>
+                    <h2 class="text-xl md:text-2xl font-black leading-tight uppercase mb-6">
+                        Shall we explore targeted promotional strategies to boost lower weekday sales (e.g., Tuesday 3.08M) by leveraging Central's high conversion rate (<span class="text-brutal-red underline">46.4%</span>)?
+                    </h2>
+                    
+                    <button class="w-full sm:w-auto bg-brutal-red text-white font-anton uppercase text-2xl px-8 py-4 border-brutal hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-4 group">
+                        Plan Strategy
+                        <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+
+                <!-- Collage Images (Team/Kitchen reference) -->
+                <div class="grid grid-cols-2 gap-2 order-1 md:order-2 relative">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=400&auto=format&fit=crop" 
+                         alt="Team" class="w-full h-48 object-cover mag-img border-brutal">
+                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=400&auto=format&fit=crop" 
+                         alt="Kitchen" class="w-full h-48 object-cover mag-img border-brutal">
+                    
+                    <!-- Red Heart Doodle from reference -->
+                    <svg class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-20 h-20 text-brutal-red doodle-draw" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4">
+                        <path d="M50,80 C50,80 10,50 10,30 C10,15 25,10 35,20 C45,30 50,40 50,40 C50,40 55,30 65,20 C75,10 90,15 90,30 C90,50 50,80 50,80 Z" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Bottom Brand Text -->
+            <div class="mt-16 text-center font-anton text-4xl text-gray-300 uppercase tracking-tightest select-none">
+                CENTRAL REPORT
+            </div>
+        </footer>
+
+    </main>
+</body>
+</html>
